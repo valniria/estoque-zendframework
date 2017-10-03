@@ -8,15 +8,31 @@ return array(
             'application' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/[:controller[/:action]]',
+                    'route' => '/[:controller[/:action[/:id]]]',
                     'constraints' => array(
                         'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*',
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Estoque\Controller',
                         'controller' => 'Index',
                         'action' => 'Index'
+                    )
+                )
+            ),
+            'produtos' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/Produtos[/:page]',
+                    'constraints' => array(
+                        'page' => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Estoque\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index',
+                        'page' => 1
                     )
                 )
             )
@@ -33,6 +49,12 @@ return array(
         ),
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml'
+        )
+    ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'FlashHelper' => 'Estoque\View\Helper\FlashHelper',
+            'PaginationHelper' => 'Estoque\View\Helper\PaginationHelper'
         )
     ),
     'doctrine' => array(

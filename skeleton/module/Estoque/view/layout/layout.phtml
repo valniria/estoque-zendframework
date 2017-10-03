@@ -23,10 +23,12 @@
 			<ul class="nav navbar-nav">
 				<li><a href="<?= $this->url('application', ['action' => 'Index']) ?>">Listagem dos Produtos</a></li>
 				<li><a href="<?= $this->url('application', ['action' => 'cadastrar']) ?>">Cadastro de Produtos</a></li>
+				<li><a href="<?= $this->url('application', ['action' => 'contato']) ?>">Contato</a></li>
 			</ul>
 	</header>
 	<main class="conteudo">
 		<?php
+			$this->flashHelper();
 			echo $this->content;
 		?>
 	</main>

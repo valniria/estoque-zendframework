@@ -6,6 +6,7 @@
 			<th>Nome</th>
 			<th>Preço</th>
 			<th>Descrição</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,9 +17,17 @@
 					<td><?= $produto->getNome(); ?></td>
 					<td><?= $produto->getPreco(); ?></td>
 					<td><?= $produto->getDescricao(); ?></td>
+					<td>
+						<a href="<?= $this->url('application', ['action' => 'remover', 'id' => $produto->getId()]) ?>" class="btn btn-danger">Remover</a>
+						<a href="<?= $this->url('application', ['action' => 'editar', 'id' => $produto->getId()]) ?>" class="btn btn-success">Editar</a>
+					</td>
 				</tr>
 			<?php
 			}
 		?>
 	</tbody>
 </table>
+
+<?php
+	echo $this->PaginationHelper($produtos, $qtdPorPagina, '/Produtos');
+?>
